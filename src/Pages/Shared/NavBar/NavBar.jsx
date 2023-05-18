@@ -1,12 +1,33 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import { FaUserAlt } from "react-icons/fa";
+
 
 
 const NavBar = () => {
+
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleLogOut = () => {
+        logOut()
+            .then()
+            .catch(error => {
+                console.log(error.message)
+            })
+    }
+
     const navItems = <>
         <li className="not-italic hover:italic"><Link to='/'>Home</Link></li>
-        <li className="not-italic hover:italic"><Link to='/alltoys'>All Toys</Link></li>
-        <li className="not-italic hover:italic"><Link to='/mytoys'>My Toys</Link></li>
-        <li className="not-italic hover:italic"><Link to='/addtoy'>Add A Toy</Link></li>
+        {
+            user && <li className="not-italic hover:italic"><Link to='/alltoys'>All Toys</Link></li>
+        }
+        {
+            user && <li className="not-italic hover:italic"><Link to='/mytoys'>My Toys</Link></li>
+        }
+        {
+            user && <li className="not-italic hover:italic"><Link to='/addtoy'>Add A Toy</Link></li>
+        }
         <li className="not-italic hover:italic"><Link to='/blog'>Blog</Link></li>
     </>
     return (
@@ -17,7 +38,7 @@ const NavBar = () => {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                       {navItems}
+                        {navItems}
                     </ul>
                 </div>
                 <Link to='/' className="btn btn-ghost normal-case text-xl"><span className="text-4xl font-bold text-sky-200">KIDO</span><span className="text-4xl font-bold text-pink-200">TOYS</span></Link>
@@ -28,7 +49,20 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to='/login'><button className="btn btn-outline btn-secondary">Login</button></Link>
+                {
+                    user &&
+                    <div className="text-3xl mr-5">
+                        <FaUserAlt></FaUserAlt>
+                    </div>
+
+                }
+                {
+                    user ?
+                        <button onClick={handleLogOut} className="btn btn-outline btn-secondary">Logout</button>
+                        :
+
+                        <Link to='/login'><button className="btn btn-outline btn-secondary">Login</button></Link>
+                }
             </div>
         </div>
     );
