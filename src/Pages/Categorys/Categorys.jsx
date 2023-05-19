@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 const Categorys = () => {
     const [categorys, setCategorys] = useState([]);
     const [activeTab, setActiveTab] = useState('disney princes');
+
+    useEffect(()=>{
+        fetch('http://localhost:5000/alltoys')
+        .then(res=>res.json())
+        .then(data=>{
+            setCategorys(data)
+        })
+    },[])
 
     const handleTab = (tabName) => {
         setActiveTab(tabName);
@@ -29,7 +37,7 @@ const Categorys = () => {
             </div>
             <div>
                 {/* {
-                    categorys.
+                    categorys?.map(category=><All)
                 } */}
             </div>
         </div>
