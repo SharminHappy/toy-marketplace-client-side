@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
+import SingleCategory from "./SingleCategory/SingleCategory";
 
 
 const Categorys = () => {
     const [categorys, setCategorys] = useState([]);
     const [activeTab, setActiveTab] = useState('disney princes');
 
-    useEffect(()=>{
+    useEffect(() => {
         fetch('http://localhost:5000/alltoys')
-        .then(res=>res.json())
-        .then(data=>{
-            setCategorys(data)
-        })
-    },[])
+            .then(res => res.json())
+            .then(data => {
+                setCategorys(data)
+            })
+    }, [])
 
     const handleTab = (tabName) => {
         setActiveTab(tabName);
@@ -29,16 +30,20 @@ const Categorys = () => {
                         <div onClick={() => handleTab('disney princes')} className={`tab tab2 tab3  tab-lifted text-xl tab-active  disney princes  ${activeTab == 'disney princes' ? 'text-pink-700' : ""}`}>
                             Disney princes
                         </div>
-                        <div onClick={() => handleTab('donald duck')} className={`tab tab2 tab3   tab-lifted  text-xl    donald duck  ${activeTab == 'donald duck' ? 'bg-pink-700 text-white' : ""}`}>
-                            donald duck
+                        <div onClick={() => handleTab('mickey mouse dolls')} className={`tab tab2 tab3   tab-lifted  text-xl    mickey mouse dolls  ${activeTab == 'mickey mouse dolls' ? 'bg-pink-700 text-white' : ""}`}>
+                            mickey mouse dolls
                         </div>
                     </div>
                 </div>
             </div>
-            <div>
-                {/* {
-                    categorys?.map(category=><All)
-                } */}
+            <div className="grid lg:grid-cols-2 justify-items-center my-11 ">
+                {
+                    categorys?.map(category => <SingleCategory
+                        key={category._id}
+                        category={category}
+                    >
+                    </SingleCategory>)
+                }
             </div>
         </div>
 

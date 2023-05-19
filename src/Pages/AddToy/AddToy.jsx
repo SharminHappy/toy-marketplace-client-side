@@ -37,30 +37,30 @@ const AddToy = () => {
                         {/* register your input into the hook by invoking the "register" function */}
                         {errors.exampleRequired && <span>This field is required</span>}
                         <div className="flex  w-full">
-                            <input className="w-full rounded p-3  h-8 m-3 "  {...register("Seller", { required: true })}
+                            <input className="w-full rounded p-3  h-8 m-3 "  {...register("seller", { required: true })}
                                 placeholder="Seller" type="text"  />
-                            <input className="w-full rounded p-3  h-8 m-3 "  {...register("Email", { required: true })}
+                            <input className="w-full rounded p-3  h-8 m-3 "  {...register("email", { required: true })}
                                 placeholder="Email" type="text" defaultValue={user?.email} />
                         </div>
                         <div className="flex  w-full">
-                            <input className="w-full rounded p-3  h-8 m-3 "  {...register("Toy Name", { required: true })}
+                            <input className="w-full rounded p-3  h-8 m-3 "  {...register("toyName", { required: true })}
                                 placeholder="Toy Name" type="text" />
-                            <input className="w-full rounded p-3   h-8 m-3"  {...register("Price", { required: true })}
-                                placeholder="Price" type="text" />
+                            <input className="w-full rounded p-3   h-8 m-3"  {...register("price", { required: true })}
+                                placeholder="Price" type="text"  />
                         </div>
-                        <select className="w-full  rounded  h-8 m-3" {...register("Category")}>
+                        <select className="w-full  rounded  h-8 m-3" {...register("subCategory")}>
                             <option value="frozen dolls">Frozen Dolls</option>
-                            <option value="disney princes">Disney Princes</option>
-                            <option value="donald duck">Donald Duck</option>
+                            <option value="disney princess">Disney Princess</option>
+                            <option value="donald duck">Mickey Mouse Dolls</option>
                         </select>
-                        <input className="w-full rounded p-3   h-8 m-3" {...register("Available Quantity", { required: true })}
+                        <input className="w-full rounded p-3   h-8 m-3" {...register("availableQuantity", { required: true })}
                             placeholder="Available Quantity" type="text" />
-                        <input className="w-full rounded p-3   h-8 m-3" {...register("Photo URL", { required: true })}
+                        <input className="w-full rounded p-3   h-8 m-3" {...register("photoURL", { required: true })}
                             placeholder="Photo URL" type="text" />
 
-                        <input className="w-full rounded p-3   h-8 m-3" {...register("Rating", { required: true })}
+                        <input className="w-full rounded p-3   h-8 m-3" {...register("rating", { required: true })}
                             placeholder="Rating" type="text" />
-                        <input className="w-full rounded p-3   h-8 m-3" {...register("Detail Description", { required: true })}
+                        <input className="w-full rounded p-3   h-8 m-3" {...register("detailDescription", { required: true })}
                             placeholder="Detail Description" type="text" />
 
                         <input className="btn rounded my-5 ml-3 w-full btn-outline hover:border-info hover:bg-info bg-blue-200" type="submit" value='Submit' />
