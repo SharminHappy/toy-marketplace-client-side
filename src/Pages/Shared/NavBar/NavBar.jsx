@@ -8,7 +8,7 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 const NavBar = () => {
 
     const { user, logOut } = useContext(AuthContext)
-    const [hover, setHover] = useState("false")
+    const [hover, setHover] = useState(false)
     const onHover = (e) => {
         e.preventDefault();
         setHover(true);
@@ -31,7 +31,7 @@ const NavBar = () => {
     const navItems = <>
         <li className="not-italic hover:italic"><Link to='/'>Home</Link></li>
         {
-            user && <li className="not-italic hover:italic"><Link to='/alltoys'>All Toys</Link></li>
+            user && <li className="not-italic hover:italic"><Link to='/alltoy'>All Toys</Link></li>
         }
         {
             user && <li className="not-italic hover:italic"><Link to='/mytoys'>My Toys</Link></li>
@@ -46,7 +46,7 @@ const NavBar = () => {
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                        {/* <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg> */}
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         {navItems}
@@ -65,8 +65,8 @@ const NavBar = () => {
                     <div className="">
                      
                         <div className="flex gap-2">
-                            {/* if hover is true then only show the text */}
-                            {hover && <p className={hover}>{user.displayName}</p>}
+                            
+                            {hover && <p className='hover'>{user.displayName}</p>}
                             <img
                                 onMouseEnter={(e) => onHover(e)}
                                 onMouseLeave={(e) => onHoverOver(e)}

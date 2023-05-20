@@ -7,11 +7,13 @@ const AddToy = () => {
 
 
 
+
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         fetch('http://localhost:5000/toys', {
             method: 'POST',
             headers: {
+                
                 'content-type': 'application/json',
             },
             body: JSON.stringify(data)

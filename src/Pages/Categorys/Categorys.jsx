@@ -2,24 +2,23 @@ import { useEffect, useState } from "react";
 import SingleCategory from "./SingleCategory/SingleCategory";
 
 
+
 const Categorys = () => {
 
     const [toys, setToys] = useState([])
 
-    const [activeTab, setActiveTab] = useState('happy');
+    const [activeTab, setActiveTab] = useState('all');
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/alltoys/${activeTab}`)
+
+        fetch(`http://localhost:5000/allToys/${activeTab}`)
             .then(res => res.json())
             .then(data => {
                 setToys(data)
-               
+
             })
     }, [activeTab]);
-   
-
-
     const handleTab = (tabName) => {
         setActiveTab(tabName);
     }
@@ -27,7 +26,7 @@ const Categorys = () => {
     return (
         <div className="text-center m-11">
             <h1 className="text-3xl">SHOP BY CATEGORY</h1>
-            <p>It is every little girl's dream to have an exact look-alike doll. It is amazing.</p>
+            <p>It is every little girl  dream to have an exact look-alike doll. It is amazing.</p>
             <div className="tab-container text-center mt-10">
                 <div className="text-center w-100 ml-80">
                     <div className="tabs">
@@ -44,7 +43,7 @@ const Categorys = () => {
                 </div>
             </div>
             <div className="grid lg:grid-cols-3 justify-items-center gap-2 my-10 ">
-                
+
                 {
                     toys?.map(toy => <SingleCategory
                         key={toy._id}
@@ -53,6 +52,7 @@ const Categorys = () => {
                     </SingleCategory>)
                 }
             </div>
+            
 
         </div>
     );
