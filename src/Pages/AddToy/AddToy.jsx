@@ -38,7 +38,7 @@ const AddToy = () => {
                         {errors.exampleRequired && <span>This field is required</span>}
                         <div className="flex  w-full">
                             <input className="w-full rounded p-3  h-8 m-3 "  {...register("seller", { required: true })}
-                                placeholder="Seller" type="text" defaultValue={user?.name}  />
+                                placeholder="Seller" type="text" defaultValue={user?.displayName}  />
                             <input className="w-full rounded p-3  h-8 m-3 "  {...register("email", { required: true })}
                                 placeholder="Email" type="text" defaultValue={user?.email} />
                         </div>

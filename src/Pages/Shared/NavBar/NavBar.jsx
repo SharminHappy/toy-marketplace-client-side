@@ -1,13 +1,24 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
-import { FaUserAlt } from "react-icons/fa";
+
 
 
 
 const NavBar = () => {
 
     const { user, logOut } = useContext(AuthContext)
+    const [hover, setHover] = useState("false")
+    const onHover = (e) => {
+        e.preventDefault();
+        setHover(true);
+        console.log('hovered above image');
+    }
+
+    const onHoverOver = (e) => {
+        e.preventDefault(); // turn false
+        setHover(false);
+    };
 
     const handleLogOut = () => {
         logOut()
@@ -51,21 +62,33 @@ const NavBar = () => {
             <div className="navbar-end">
                 {
                     user &&
-                    <div className="text-3xl mr-5">
-                        <FaUserAlt></FaUserAlt>
-                    </div>
+                    <div className="">
+                     
+                        <div className="flex gap-2">
+                            {/* if hover is true then only show the text */}
+                            {hover && <p className="hover text-sm">{user.displayName}</p>}
+                            <img
+                                onMouseEnter={(e) => onHover(e)}
+                                onMouseLeave={(e) => onHoverOver(e)}
+                                alt=""
+                                src={user.photoURL}
+                                className="img-responsive rounded-3xl w-10 mr-3 "
+                            />
+                        </div>
+                     </div>   
 
                 }
-                {
-                    user ?
-                        <button onClick={handleLogOut} className="btn btn-outline btn-secondary">Logout</button>
-                        :
+                        {
+                            user ?
+                                <button onClick={handleLogOut} className="btn btn-outline btn-secondary">Logout</button>
+                                :
 
-                        <Link to='/login'><button className="btn btn-outline btn-secondary">Login</button></Link>
-                }
-            </div>
+                                <Link to='/login'><button className="btn btn-outline btn-secondary">Login</button></Link>
+                        }
+                  </div>
+           
         </div>
-    );
+            );
 };
 
-export default NavBar;
+            export default NavBar;
