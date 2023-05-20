@@ -38,7 +38,7 @@ const AddToy = () => {
                         {errors.exampleRequired && <span>This field is required</span>}
                         <div className="flex  w-full">
                             <input className="w-full rounded p-3  h-8 m-3 "  {...register("seller", { required: true })}
-                                placeholder="Seller" type="text"  />
+                                placeholder="Seller" type="text" defaultValue={user?.name}  />
                             <input className="w-full rounded p-3  h-8 m-3 "  {...register("email", { required: true })}
                                 placeholder="Email" type="text" defaultValue={user?.email} />
                         </div>
@@ -49,10 +49,11 @@ const AddToy = () => {
                                 placeholder="Price" type="text"  />
                         </div>
                         <select className="w-full  rounded  h-8 m-3" {...register("subCategory")}>
-                            <option value="frozen dolls">Frozen Dolls</option>
-                            <option value="disney princess">Disney Princess</option>
-                            <option value="donald duck">Mickey Mouse Dolls</option>
+                            <option value="frozenDolls">Frozen Dolls</option>
+                            <option value="disneyPrincess">Disney Princess</option>
+                            <option value="donaldDuck">Mickey Mouse Dolls</option>
                         </select>
+                        
                         <input className="w-full rounded p-3   h-8 m-3" {...register("availableQuantity", { required: true })}
                             placeholder="Available Quantity" type="text" />
                         <input className="w-full rounded p-3   h-8 m-3" {...register("photoURL", { required: true })}

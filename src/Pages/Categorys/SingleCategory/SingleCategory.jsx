@@ -1,7 +1,7 @@
 
 
-const SingleCategory = ({ category }) => {
-    const { seller,toyName,subCategory,photoURL,price,rating,availableQuantity,detailDescription } = category;
+const SingleCategory = ({ toy}) => {
+    const { seller,toyName,subCategory,photoURL,price,rating,availableQuantity,detailDescription } = toy || {};
     return (
         <div className="card w-96 glass">
             <figure><img src={photoURL} alt="car!" /></figure>
