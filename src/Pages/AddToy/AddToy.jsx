@@ -1,30 +1,30 @@
-import { useContext} from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import {AuthContext} from '../../Providers/AuthProvider';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const AddToy = () => {
-    const {user}= useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
-   
-    
-    const { register, handleSubmit,  formState: { errors } } = useForm();
+
+
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        fetch('http://localhost:5000/toys',{
-            method:'POST',
-            headers:{
-                'content-type':'application/json',
+        fetch('http://localhost:5000/toys', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
             },
-            body:JSON.stringify(data)
-            
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            console.log(data)
+            body: JSON.stringify(data)
 
         })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+
+            })
         console.log(data);
     }
-   
+
     return (
         /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
         <div className="  mx-auto my-auto p-11 ">
@@ -38,7 +38,7 @@ const AddToy = () => {
                         {errors.exampleRequired && <span>This field is required</span>}
                         <div className="flex  w-full">
                             <input className="w-full rounded p-3  h-8 m-3 "  {...register("seller", { required: true })}
-                                placeholder="Seller" type="text" defaultValue={user?.displayName}  />
+                                placeholder="Seller" type="text" defaultValue={user?.displayName} />
                             <input className="w-full rounded p-3  h-8 m-3 "  {...register("email", { required: true })}
                                 placeholder="Email" type="text" defaultValue={user?.email} />
                         </div>
@@ -46,14 +46,14 @@ const AddToy = () => {
                             <input className="w-full rounded p-3  h-8 m-3 "  {...register("toyName", { required: true })}
                                 placeholder="Toy Name" type="text" />
                             <input className="w-full rounded p-3   h-8 m-3"  {...register("price", { required: true })}
-                                placeholder="Price" type="text"  />
+                                placeholder="Price" type="text" />
                         </div>
                         <select className="w-full  rounded  h-8 m-3" {...register("subCategory")}>
                             <option value="frozenDolls">Frozen Dolls</option>
                             <option value="disneyPrincess">Disney Princess</option>
-                            <option value="donaldDuck">Mickey Mouse Dolls</option>
+                            <option value="mickeyMouseDolls">Mickey Mouse Dolls</option>
                         </select>
-                        
+
                         <input className="w-full rounded p-3   h-8 m-3" {...register("availableQuantity", { required: true })}
                             placeholder="Available Quantity" type="text" />
                         <input className="w-full rounded p-3   h-8 m-3" {...register("photoURL", { required: true })}

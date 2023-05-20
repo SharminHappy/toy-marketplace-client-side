@@ -42,7 +42,7 @@ const NavBar = () => {
         <li className="not-italic hover:italic"><Link to='/blog'>Blog</Link></li>
     </>
     return (
-        <div className="navbar  bg-pink-50 ">
+        <div className="navbar  bg-pink-50 rounded ">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -66,13 +66,13 @@ const NavBar = () => {
                      
                         <div className="flex gap-2">
                             {/* if hover is true then only show the text */}
-                            {hover && <p className="hover text-sm">{user.displayName}</p>}
+                            {hover && <p className={hover}>{user.displayName}</p>}
                             <img
                                 onMouseEnter={(e) => onHover(e)}
                                 onMouseLeave={(e) => onHoverOver(e)}
                                 alt=""
                                 src={user.photoURL}
-                                className="img-responsive rounded-3xl w-10 mr-3 "
+                                className="img-responsive w-10 rounded-full mr-3 "
                             />
                         </div>
                      </div>   

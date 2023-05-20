@@ -43,8 +43,8 @@ const Categorys = () => {
                     </div>
                 </div>
             </div>
-            <div className="grid lg:grid-cols-2 justify-items-center my-11 ">
-                <h1>length:{toys.length}</h1>
+            <div className="grid lg:grid-cols-3 justify-items-center gap-2 my-10 ">
+                
                 {
                     toys?.map(toy => <SingleCategory
                         key={toy._id}
