@@ -5,6 +5,7 @@ import Login from "../Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import AddToy from "../Pages/AddToy/AddToy";
 import PrivateRoute from "./PrivateRoute";
+import Categorys from "../Pages/Categorys/Categorys";
 
 
 
@@ -20,6 +21,11 @@ const router = createBrowserRouter([
       {
         path: '/addtoy',
         element:<PrivateRoute><AddToy></AddToy></PrivateRoute>,
+      },
+      {
+
+        path:'/categorys',
+        element:<PrivateRoute><Categorys></Categorys></PrivateRoute>
       },
       {
         path: '/login',
