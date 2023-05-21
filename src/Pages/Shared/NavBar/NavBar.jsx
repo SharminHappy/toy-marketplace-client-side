@@ -31,7 +31,7 @@ const NavBar = () => {
     const navItems = <>
         <li className="not-italic hover:italic"><Link to='/'>Home</Link></li>
         {
-            user && <li className="not-italic hover:italic"><Link to='/alltoy'>All Toys</Link></li>
+            user && <li className="not-italic hover:italic"><Link to='/alltoys'>All Toys</Link></li>
         }
         {
             user && <li className="not-italic hover:italic"><Link to='/mytoys'>My Toys</Link></li>
@@ -79,7 +79,7 @@ const NavBar = () => {
 
                 }
                         {
-                            user ?
+                            user ?.email?
                                 <button onClick={handleLogOut} className="btn btn-outline btn-secondary">Logout</button>
                                 :
 
