@@ -16,7 +16,7 @@ const NavBar = () => {
     }
 
     const onHoverOver = (e) => {
-        e.preventDefault(); // turn false
+        e.preventDefault();
         setHover(false);
     };
 
@@ -29,17 +29,22 @@ const NavBar = () => {
     }
 
     const navItems = <>
-        <li className="not-italic hover:italic"><Link to='/'>Home</Link></li>
+        <li><Link to='/'>Home</Link></li>
+        <li><Link to='/blog'>Blog</Link></li>
         {
-            user && <li className="not-italic hover:italic"><Link to='/alltoys'>All Toys</Link></li>
+            user?.email ?
+                <>
+
+
+                    <li ><Link to='/alltoys'>All Toys</Link></li>
+                    <li><Link to='/mytoy'>My Toys</Link></li>
+                    <li><Link to='/addtoy'>Add A Toy</Link></li>
+                    <li><button onClick={handleLogOut} className="btn btn-outline btn-secondary">Logout</button></li>
+
+                </>
+                :
+                <li className=""><Link to='/login'><button className="btn btn-outline btn-secondary">Login</button></Link></li>
         }
-        {
-            user && <li className="not-italic hover:italic"><Link to='/mytoys'>My Toys</Link></li>
-        }
-        {
-            user && <li className="not-italic hover:italic"><Link to='/addtoy'>Add A Toy</Link></li>
-        }
-        <li className="not-italic hover:italic"><Link to='/blog'>Blog</Link></li>
     </>
     return (
         <div className="navbar  bg-pink-50 rounded ">
@@ -62,10 +67,8 @@ const NavBar = () => {
             <div className="navbar-end">
                 {
                     user &&
-                    <div className="">
-                     
+                    <div>
                         <div className="flex gap-2">
-                            
                             {hover && <p className='hover'>{user.displayName}</p>}
                             <img
                                 onMouseEnter={(e) => onHover(e)}
@@ -75,20 +78,13 @@ const NavBar = () => {
                                 className="img-responsive w-10 rounded-full mr-3 "
                             />
                         </div>
-                     </div>   
-
+                    </div>
                 }
-                        {
-                            user ?.email?
-                                <button onClick={handleLogOut} className="btn btn-outline btn-secondary">Logout</button>
-                                :
 
-                                <Link to='/login'><button className="btn btn-outline btn-secondary">Login</button></Link>
-                        }
-                  </div>
-           
+            </div>
+
         </div>
-            );
+    );
 };
 
-            export default NavBar;
+export default NavBar;
