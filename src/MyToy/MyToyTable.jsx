@@ -1,7 +1,8 @@
 
 
-const MyToyTable = ({ mytoy}) => {
-    const { toyName,price,seller, availableQuantity, subCategory } = mytoy || {};
+const MyToyTable = ({ mytoy,handleDelete}) => {
+    const {_id,toyName,price,seller, availableQuantity, subCategory } = mytoy || {};
+    
 
     return (
 
@@ -36,7 +37,7 @@ const MyToyTable = ({ mytoy}) => {
             
                 <td>
                     <button className="btn btn-ghost btn-xs">edit</button>
-                    <button className="btn btn-ghost btn-xs">delete</button>
+                    <button onClick={()=>handleDelete(_id)} className="btn btn-ghost btn-xs">delete</button>
                 </td>
             
         </tr>

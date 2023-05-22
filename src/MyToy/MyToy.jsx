@@ -1,6 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import  { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
 import MyToyTable from "./MyToyTable";
+import Swal from "sweetalert2";
+
 
 const MyToy = () => {
     const { user } = useContext(AuthContext);
@@ -14,6 +16,39 @@ const MyToy = () => {
                 setMytoys(data)
             })
     }, [user]);
+
+    const handleDelete=(_id)=>{
+        console.log("delete icon ",_id);
+        fetch(`http://localhost:5000/toys/${_id}`,{
+            method:"DELETE"
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            if(data.deletedCount>0){
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                      )
+                    }
+                  })
+                const remaining=mytoys.filter(toy=>toy._id !== _id);
+                setMytoys(remaining);
+
+
+            }
+        })
+    }
    
 
     return (
@@ -45,6 +80,7 @@ const MyToy = () => {
                                 mytoys.map(mytoy => <MyToyTable
                                     key={mytoy._id}
                                     mytoy={mytoy}
+                                    handleDelete={handleDelete}
                                    
                                 ></MyToyTable>)
                             }
