@@ -25,24 +25,24 @@ const Categorys = () => {
 
     return (
         <div className="text-center m-11">
-            <h1 className="text-3xl">SHOP BY CATEGORY</h1>
-            <p>It is every little girl  dream to have an exact look-alike doll. It is amazing.</p>
+            <h1 className="text-3xl text-sky-200 font-bold">SHOP BY CATEGORY</h1>
+            <p className=" text-gray-400">It is every little girl  dream to have an exact look-alike doll. It is amazing.</p>
             <div className="tab-container text-center mt-10">
                 <div className="text-center w-100 ml-80">
                     <div className="tabs">
-                        <div onClick={() => handleTab('frozenDolls')} className={`tab tab2 tab3 tab-lifted text-xl   frozenDolls  ${activeTab == 'frozenDolls' ? 'bg-pink-700 text-white' : ""}`}>
+                        <div onClick={() => handleTab('frozenDolls')} className={`tab tab2 tab3 tab-lifted text-xl   frozenDolls  ${activeTab == 'frozenDolls' ? 'bg-pink-300 text-white' : ""}`}>
                             Frozen Dolls
                         </div>
-                        <div onClick={() => handleTab('disneyPrincess')} className={`tab tab2 tab3  tab-lifted text-xl tab-active  disneyPrincess  ${activeTab == 'disneyPrincess' ? 'text-pink-700' : ""}`}>
+                        <div onClick={() => handleTab('disneyPrincess')} className={`tab tab2 tab3  tab-lifted text-xl tab-active  disneyPrincess  ${activeTab == 'disneyPrincess' ? 'text-pink-300' : ""}`}>
                             Disney princess
                         </div>
-                        <div onClick={() => handleTab('mickeyMouseDolls')} className={`tab tab2 tab3   tab-lifted  text-xl    mickeyMouseDolls ${activeTab == 'mickeyMouseDolls' ? 'bg-pink-700 text-white' : ""}`}>
+                        <div onClick={() => handleTab('mickeyMouseDolls')} className={`tab tab2 tab3   tab-lifted  text-xl    mickeyMouseDolls ${activeTab == 'mickeyMouseDolls' ? 'bg-pink-300 text-white' : ""}`}>
                             Mickey mouse dolls
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="grid lg:grid-cols-3 justify-items-center gap-2 my-10 ">
+            <div className="grid lg:grid-cols-3 gap-2 my-10 ">
 
                 {
                     toys?.map(toy => <SingleCategory

@@ -12,7 +12,7 @@ const NavBar = () => {
     const onHover = (e) => {
         e.preventDefault();
         setHover(true);
-        console.log('hovered above image');
+        // console.log('hovered above image');
     }
 
     const onHoverOver = (e) => {
@@ -29,25 +29,25 @@ const NavBar = () => {
     }
 
     const navItems = <>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/blog'>Blog</Link></li>
+        <li><Link to='/' className="text-white font-medium">Home</Link></li>
+        <li><Link to='/blog' className="text-white font-medium">Blog</Link></li>
         {
             user?.email ?
                 <>
 
 
-                    <li ><Link to='/alltoys'>All Toys</Link></li>
-                    <li><Link to='/mytoy'>My Toys</Link></li>
-                    <li><Link to='/addtoy'>Add A Toy</Link></li>
-                    <li><button onClick={handleLogOut} className="btn btn-outline btn-secondary">Logout</button></li>
+                    <li><Link to='/alltoys' className="text-white font-medium">All Toys</Link></li>
+                    <li><Link to='/mytoy' className="text-white font-medium">My Toys</Link></li>
+                    <li><Link to='/addtoy' className="text-white font-medium">Add A Toy</Link></li>
+                    <li><button onClick={handleLogOut} className="btn btn-outline  text-white bg-pink-400 px-2  hover:bg-pink-500">Logout</button></li>
 
                 </>
                 :
-                <li className=""><Link to='/login'><button className="btn btn-outline btn-secondary">Login</button></Link></li>
+                <li><Link to='/login'><button className="btn btn-outline btn-secondary bg-pink-400 text-white px-2">Login</button></Link></li>
         }
     </>
     return (
-        <div className="navbar  bg-pink-50 rounded ">
+        <div className="navbar  bg-pink-300 rounded ">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -69,13 +69,13 @@ const NavBar = () => {
                     user &&
                     <div>
                         <div className="flex gap-2">
-                            {hover && <p className='hover'>{user.displayName}</p>}
+                            {hover && <p className='hover text-white font-semibold my-auto'>{user.displayName}</p>}
                             <img
                                 onMouseEnter={(e) => onHover(e)}
                                 onMouseLeave={(e) => onHoverOver(e)}
                                 alt=""
                                 src={user.photoURL}
-                                className="img-responsive w-10 rounded-full mr-3 "
+                                className="img-responsive w-10 rounded-full mr-10 "
                             />
                         </div>
                     </div>

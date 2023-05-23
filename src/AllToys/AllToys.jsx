@@ -1,7 +1,6 @@
-
-
 import AllToysTable from "./AllToysTable";
 import { useEffect, useState } from "react";
+import Swal from 'sweetalert2'
 
 
 const AllToys = () => {
@@ -9,17 +8,17 @@ const AllToys = () => {
     // const loadData = useLoaderData();
     const [toy, setToy] = useState([]);
     const [search, setSearch] = useState('')
-    const [limit,setLimit]=useState(0);
+    const [limit, setLimit] = useState(0);
 
     // loadData.map((a) => {
     //     let x = a.price;
     //     return 0;
 
-        // x=x.replace('$','');
-        // x=parseFloat(x);
-        // a.price=x;
-        // return a;
-        // console.log(typeof (x));
+    // x=x.replace('$','');
+    // x=parseFloat(x);
+    // a.price=x;
+    // return a;
+    // console.log(typeof (x));
     // })
 
     // loadData.sort((a,b)=>{
@@ -34,46 +33,71 @@ const AllToys = () => {
     //     }
     //     return x-y;
     // })
-    const handleLimit=(event)=>{
+    const handleLimit = (event) => {
         event.preventDefault();
-        const limitValue =event.target.limit.value;
+        const limitValue = event.target.limit.value;
         setLimit(limitValue);
 
     }
-   
-    useEffect(()=>{
+
+    useEffect(() => {
         fetch(`http://localhost:5000/toys?limit=${limit}`)
-        .then(res=>res.json())
-        .then(data=>setToy(data))
-    },[limit])
+            .then(res => res.json())
+        .then(data => {      
+            setToy(data)})
+    }, [limit])
 
     const handleSearch = () => {
         fetch(`http://localhost:5000/toySearchByToyName/${search}`)
             .then(res => res.json())
             .then(data => {
+            
+                let timerInterval
+                Swal.fire({
+                    title: 'Auto Searching!',
+                    html: 'I will finding <b></b> milliseconds.',
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                            b.textContent = Swal.getTimerLeft()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        console.log('I will finding by the timer')
+                    }
+                })
                 setToy(data)
             })
+            
 
     }
 
-   
+
     return (
-        
+
         <div>
             <div className="search-box p-2 text-center w-1/2 flex gap-3 mx-auto my-4">
                 <input
-                    onChange={(e) => setSearch(e.target.value)} 
-                    
+                    onChange={(e) => setSearch(e.target.value)}
+
                     type="text"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 "
                 ></input>{''}
-                <button onClick={handleSearch} className="p-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                <button onClick={handleSearch} className="btn btn-outline  text-white bg-pink-300 px-4  hover:bg-pink-500">Search</button>
             </div>
             <div>
-                <form onSubmit={handleLimit} className="flex w-40" >
-                    <input className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 " type="text" name="limit"  />
-                    <button className="p-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"type="submit">Limit</button>
-                    
+                <form onSubmit={handleLimit} className="flex w-40 gap-2" >
+                    <input className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 " type="text" name="limit" />
+                    <button className="btn btn-outline  text-white bg-pink-300 px-4  hover:bg-pink-500" type="submit">Limit</button>
+
                 </form>
             </div>
             <div className="overflow-x-auto w-full my-20">

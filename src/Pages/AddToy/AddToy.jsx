@@ -30,11 +30,11 @@ const AddToy = () => {
     return (
         /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
         <div className="  mx-auto my-auto p-11 ">
-            <img className="w-full" src="https://img.freepik.com/free-psd/maternity-baby-shower-background_23-2150237231.jpg?w=740&t=st=1684474312~exp=1684474912~hmac=697b08c0fce8b0dd824680b9b3cbea3156ee71711aa5bc18d374eba8d8f7da18" alt="" />
+            <img className="w-full" src="https://i.ibb.co/6BqVhw8/stuffed-toy-animals-white-displayed-shelf-3d-rendered-illustration-78455-1862.jpg" alt="" />
             <div className="absolute flex justify-center transform -translate-y-2/3  my-auto ">
 
                 <div className="w-1/2 -translate-y-1/2">
-                    <h1 className="text-center text-3xl font-bold text-pink-400 font-serif">Add a Toy</h1>
+                    <h1 className="text-center text-3xl font-bold text-pink-400 ">Add a Toy</h1>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         {/* register your input into the hook by invoking the "register" function */}
                         {errors.exampleRequired && <span>This field is required</span>}
@@ -63,10 +63,10 @@ const AddToy = () => {
 
                         <input className="w-full rounded p-3   h-8 m-3" {...register("rating", { required: true })}
                             placeholder="Rating" type="text" />
-                        <input className="w-full rounded p-3   h-8 m-3" {...register("detailDescription", { required: true })}
+                        <input className="w-full rounded p-3 h-8 m-3" {...register("detailDescription", { required: true })}
                             placeholder="Detail Description" type="text" />
 
-                        <input className="btn rounded my-5 ml-3 w-full btn-outline hover:border-info hover:bg-info bg-blue-200" type="submit" value='Submit' />
+                        <input className="btn rounded my-5 ml-3 w-full btn-outline hover:border-sky-200 hover:bg-sky-300 bg-sky-200" type="submit" value='Submit' />
 
                     </form>
                 </div>

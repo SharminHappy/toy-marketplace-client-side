@@ -1,26 +1,30 @@
 import { Link } from "react-router-dom";
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
 
 
 const SingleCategory = ({ toy }) => {
-    const {_id, toyName, photoURL, price, rating, } = toy || {};
+    const { _id, toyName, photoURL, price, rating } = toy || {};
     return (
-        <div className="card  w-auto p-2 glass">
+        <div className="card  w-full p-1 glass">
             <figure><img src={photoURL} alt="car!" /></figure>
-            <div className="card-body">
-                <h2 className="card-title">{toyName}</h2>
-                <p>Price:{price}</p>
-                <p>Rating:{rating}</p>
-                <div className="card-actions justify-between">
-                    {/* <div className="rating">
-                        <input type="radio" name="rating-1" className="mask mask-star-2 bg-orange-400" />
-                        <input type="radio" name="rating-1" className="mask mask-star-2 bg-orange-400"/>
-                        <input type="radio" name="rating-1" className="mask mask-star-2 bg-orange-400" />
-                        <input type="radio" name="rating-1" className="mask mask-star-2 bg-orange-400" />
-                        <input type="radio" name="rating-1" className="mask mask-star-2 bg-orange-400" />
-                    </div> */}
-                    <Link to={`singleToy/${_id}`}>
-                    <button className="btn btn-primary bg-pink-800">View Details</button>
-                    </Link>
+            <div className="card-body ">
+                <h2 className="text-3xl font-semibold ">{toyName}</h2>
+                <p className="font-semibold">Price: {price}</p>
+                <div className="card-footer flex gap-2 ">
+
+                    <div>
+                        <Link to={`singleToy/${_id}`}>
+                            <button className="btn btn-outline  text-white bg-pink-300 px-4  hover:bg-pink-500">View Details</button>
+                        </Link>
+                    </div>
+                    <div className=" flex flex-grow">
+
+                        <Rating style={{ maxWidth: 120 }} value={rating} readOnly />
+                        <span className="font-bold">{rating}</span>
+
+                    </div>
+
                 </div>
             </div>
         </div>
