@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 
 
-const MyToyTable = ({ mytoy,handleDelete}) => {
-    const {_id,toyName,price,seller, availableQuantity, subCategory } = mytoy || {};
-    
+const MyToyTable = ({ mytoy, handleDelete}) => {
+    const { _id, toyName, price, seller, availableQuantity, subCategory} = mytoy || {};
+
 
     return (
 
@@ -25,21 +26,17 @@ const MyToyTable = ({ mytoy,handleDelete}) => {
             <td>{subCategory}</td>
             <td>{price}</td>
             <td>{availableQuantity}</td>
-            {/* <td>
-                {
-                    <button
-                    onClick={()=>setModalShow(true)}
-                    
-                    >Edit</button>
-                    
-                }
-            </td> */}
-            
-                <td>
-                    <button className="btn btn-ghost btn-xs">edit</button>
-                    <button onClick={()=>handleDelete(_id)} className="btn btn-ghost btn-xs">delete</button>
-                </td>
-            
+            <td>
+                <Link to={`/update/${_id}`}>
+                   <button className="btn btn-ghost btn-xs">edit</button>
+                </Link>
+            </td>
+
+            <th>
+
+                <button onClick={() => handleDelete(_id)} className="btn btn-ghost btn-xs">delete</button>
+            </th>
+
         </tr>
 
     );

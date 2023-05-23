@@ -10,6 +10,7 @@ import AllToys from "../AllToys/AllToys";
 import SingleToy from "../Pages/SingleToy/SingleToy";
 import MyToy from "../MyToy/MyToy";
 import Blog from "../Pages/Blog/Blog";
+import UpdateToyModal from "../Pages/UpdateToyModal/UpdateToyModal";
 
 
 
@@ -46,6 +47,12 @@ const router = createBrowserRouter([
         path:'/mytoy',
         element:<PrivateRoute><MyToy></MyToy></PrivateRoute>,
 
+      },
+      {
+
+        path:'/update/:id',
+        element:<UpdateToyModal></UpdateToyModal>,
+      loader:({params})=>fetch(`http://localhost:5000/toys/${params.id}`)
       },
       {
         path:'/blog',

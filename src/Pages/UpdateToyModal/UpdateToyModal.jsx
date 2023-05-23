@@ -1,20 +1,21 @@
-import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { AuthContext } from '../../Providers/AuthProvider';
+import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
+import { useContext } from "react";
 import Swal from "sweetalert2";
 
-const AddToy = () => {
+
+const UpdateToyModal = () => {
     const { user } = useContext(AuthContext);
+    const loadedToy = useLoaderData();
 
-
-
-
+    const { _id, toyName, price, seller, availableQuantity, subCategory, detailDescription, photoURL, rating } = loadedToy || {};
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        fetch('http://localhost:5000/toys', {
-            method: 'POST',
+        fetch(`http://localhost:5000/toys/${_id}`, {
+            method: 'PUT',
             headers: {
-                
+
                 'content-type': 'application/json',
             },
             body: JSON.stringify(data)
@@ -22,12 +23,11 @@ const AddToy = () => {
         })
             .then(res => res.json())
             .then(data => {
-
                 console.log(data)
-                if(data.insertId){
+                if(data.modifiedCount>0){
                     Swal.fire({
                         title:'Success!',
-                        text:'Toy Added Successfully',
+                        text:'Toy Updated Successfully',
                         icon:'success',
                         confirmButtonText:'Cool'
 
@@ -39,8 +39,11 @@ const AddToy = () => {
         console.log(data);
     }
 
+
+
+
+
     return (
-        /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
         <div className="  mx-auto my-auto p-11 ">
             <img className="w-full" src="https://i.ibb.co/6BqVhw8/stuffed-toy-animals-white-displayed-shelf-3d-rendered-illustration-78455-1862.jpg" alt="" />
             <div className="absolute flex justify-center transform -translate-y-2/3  my-auto ">
@@ -58,25 +61,25 @@ const AddToy = () => {
                         </div>
                         <div className="flex  w-full">
                             <input className="w-full rounded p-3  h-8 m-3 "  {...register("toyName", { required: true })}
-                                placeholder="Toy Name" type="text" />
+                                placeholder="Toy Name" type="text" defaultValue={toyName} />
                             <input className="w-full rounded p-3   h-8 m-3"  {...register("price", { required: true })}
-                                placeholder="Price" type="text" />
+                                placeholder="Price" type="text" defaultValue={price} />
                         </div>
-                        <select className="w-full  rounded  h-8 m-3" {...register("subCategory")}>
+                        <select className="w-full  rounded  h-8 m-3" {...register("subCategory")} >
                             <option value="frozenDolls">Frozen Dolls</option>
                             <option value="disneyPrincess">Disney Princess</option>
                             <option value="mickeyMouseDolls">Mickey Mouse Dolls</option>
                         </select>
 
                         <input className="w-full rounded p-3   h-8 m-3" {...register("availableQuantity", { required: true })}
-                            placeholder="Available Quantity" type="text" />
+                            placeholder="Available Quantity" type="text" defaultValue={availableQuantity} />
                         <input className="w-full rounded p-3   h-8 m-3" {...register("photoURL", { required: true })}
-                            placeholder="Photo URL" type="text" />
+                            placeholder="Photo URL" type="text" defaultValue={photoURL} />
 
                         <input className="w-full rounded p-3   h-8 m-3" {...register("rating", { required: true })}
-                            placeholder="Rating" type="text" />
+                            placeholder="Rating" type="text" defaultValue={rating} />
                         <input className="w-full rounded p-3 h-8 m-3" {...register("detailDescription", { required: true })}
-                            placeholder="Detail Description" type="text" />
+                            placeholder="Detail Description" type="text" defaultValue={detailDescription} />
 
                         <input className="btn rounded my-5 ml-3 w-full btn-outline hover:border-sky-200 hover:bg-sky-300 bg-sky-200" type="submit" value='Submit' />
 
@@ -84,8 +87,7 @@ const AddToy = () => {
                 </div>
             </div>
         </div>
-
     );
 };
 
-export default AddToy;
+export default UpdateToyModal;

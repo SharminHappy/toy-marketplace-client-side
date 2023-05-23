@@ -8,6 +8,7 @@ const MyToy = () => {
     const { user } = useContext(AuthContext);
 
     const [mytoys, setMytoys] = useState([])  
+    // const [modalShow,setModalShow]=useState(false);
 
     useEffect(() => {
         fetch(`http://localhost:5000/myToy/${user?.email}`)
@@ -48,7 +49,30 @@ const MyToy = () => {
 
             }
         })
+
     }
+
+    // const handleUpdate=(_id)=>{
+    //     fetch(`http://localhost:5000/toys/${_id}`,{
+    //         method:'PUT',
+    //         headers:{
+    //             'content-type':'application/json'
+    //         },
+    //         body:JSON.stringify({status:'confirm'})
+    //     })
+    //     .then(res=>res.json())
+    //     .then(data=>{
+    //         console.log(data);
+    //         if(data.modifiedCount>0){
+    //             // update
+    //             const remaining =mytoys.filter(toy=>toy._id !== _id);
+    //             const updated=mytoys.find(toy=>toy._id === _id);
+    //             updated.status='confirm';
+    //             const newToy=[updated,...remaining];
+    //             setMytoys(newToy);
+    //         }
+    //     })
+    // }
    
 
     return (
@@ -71,8 +95,8 @@ const MyToy = () => {
                                 <th>Sub-Category</th>
                                 <th>Price</th>
                                 <th>Available Quantity</th>
-                                <th>Details</th>
-                                <th></th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody className="text-center">
@@ -80,7 +104,9 @@ const MyToy = () => {
                                 mytoys.map(mytoy => <MyToyTable
                                     key={mytoy._id}
                                     mytoy={mytoy}
+                                    user={user}
                                     handleDelete={handleDelete}
+                                   
                                    
                                 ></MyToyTable>)
                             }
