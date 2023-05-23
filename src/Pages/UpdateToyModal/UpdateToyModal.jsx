@@ -9,7 +9,7 @@ const UpdateToyModal = () => {
     const { user } = useContext(AuthContext);
     const loadedToy = useLoaderData();
 
-    const { _id, toyName, price, seller, availableQuantity, subCategory, detailDescription, photoURL, rating } = loadedToy || {};
+    const { _id, toyName, price,availableQuantity,  detailDescription, photoURL, rating } = loadedToy || {};
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         fetch(`http://localhost:5000/toys/${_id}`, {
