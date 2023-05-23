@@ -1,3 +1,4 @@
+import Accessories from "../../Accessories/Accessories";
 import Categorys from "../../Categorys/Categorys";
 import Gallery from "../../Gallary/Gallery";
 import NewArrival from "../../NewArrival/NewArrival";
@@ -13,6 +14,8 @@ const Home = () => {
             <Gallery></Gallery>
            <Categorys></Categorys>
            <NewArrival></NewArrival>
+           <Accessories></Accessories>
+
 
         </div>
     );
