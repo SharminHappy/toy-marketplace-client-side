@@ -12,7 +12,7 @@ const UpdateToyModal = () => {
     const { _id, toyName, price,availableQuantity,  detailDescription, photoURL, rating } = loadedToy || {};
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        fetch(`http://localhost:5000/toys/${_id}`, {
+        fetch(`https://toy-marketplace-server-chi-mocha.vercel.app/toys/${_id}`, {
             method: 'PUT',
             headers: {
 

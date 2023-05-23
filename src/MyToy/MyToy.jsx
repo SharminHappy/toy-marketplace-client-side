@@ -11,7 +11,7 @@ const MyToy = () => {
     // const [modalShow,setModalShow]=useState(false);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myToy/${user?.email}`)
+        fetch(`https://toy-marketplace-server-chi-mocha.vercel.app/myToy/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setMytoys(data)
@@ -20,7 +20,7 @@ const MyToy = () => {
 
     const handleDelete=(_id)=>{
         console.log("delete icon ",_id);
-        fetch(`http://localhost:5000/toys/${_id}`,{
+        fetch(`https://toy-marketplace-server-chi-mocha.vercel.app/toys/${_id}`,{
             method:"DELETE"
         })
         .then(res=>res.json())
@@ -52,36 +52,13 @@ const MyToy = () => {
 
     }
 
-    // const handleUpdate=(_id)=>{
-    //     fetch(`http://localhost:5000/toys/${_id}`,{
-    //         method:'PUT',
-    //         headers:{
-    //             'content-type':'application/json'
-    //         },
-    //         body:JSON.stringify({status:'confirm'})
-    //     })
-    //     .then(res=>res.json())
-    //     .then(data=>{
-    //         console.log(data);
-    //         if(data.modifiedCount>0){
-    //             // update
-    //             const remaining =mytoys.filter(toy=>toy._id !== _id);
-    //             const updated=mytoys.find(toy=>toy._id === _id);
-    //             updated.status='confirm';
-    //             const newToy=[updated,...remaining];
-    //             setMytoys(newToy);
-    //         }
-    //     })
-    // }
-   
+ 
 
     return (
         <div>
             <div className="my-toys-container">
-                <h1 className=" text-center p-4 tex-4xl">My Toys:{mytoys.length}</h1>
-
                 <div className="overflow-x-auto w-full">
-                    <table className="table w-full">
+                    <table className="table w-full my-10">
                         {/* head */}
                         <thead className="text-center">
                             <tr>

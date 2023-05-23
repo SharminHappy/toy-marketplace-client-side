@@ -41,14 +41,14 @@ const AllToys = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/toys?limit=${limit}`)
+        fetch(`https://toy-marketplace-server-chi-mocha.vercel.app/toys?limit=${limit}`)
             .then(res => res.json())
         .then(data => {      
             setToy(data)})
     }, [limit])
 
     const handleSearch = () => {
-        fetch(`http://localhost:5000/toySearchByToyName/${search}`)
+        fetch(`https://toy-marketplace-server-chi-mocha.vercel.app/toySearchByToyName/${search}`)
             .then(res => res.json())
             .then(data => {
             

@@ -41,7 +41,7 @@ const router = createBrowserRouter([
       {
         path:'/singleToy/:id',
         element:<PrivateRoute><SingleToy></SingleToy></PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:5000/toys/${params.id}`)
+        loader:({params})=>fetch(`https://toy-marketplace-server-chi-mocha.vercel.app/toys/${params.id}`)
 
       },
       {
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
 
         path:'/update/:id',
         element:<UpdateToyModal></UpdateToyModal>,
-      loader:({params})=>fetch(`http://localhost:5000/toys/${params.id}`)
+      loader:({params})=>fetch(`https://toy-marketplace-server-chi-mocha.vercel.app/toys/${params.id}`)
       },
       {
         path:'/blog',

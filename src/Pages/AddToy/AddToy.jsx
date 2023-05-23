@@ -11,7 +11,7 @@ const AddToy = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        fetch('http://localhost:5000/toys', {
+        fetch('https://toy-marketplace-server-chi-mocha.vercel.app/toys', {
             method: 'POST',
             headers: {
                 

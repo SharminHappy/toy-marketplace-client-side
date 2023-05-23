@@ -1,5 +1,5 @@
 
-Add a hyperlink --------[toy-managementPlace-liveLink:]()
+Add a hyperlink --------[toy-managementPlace-liveLink:](https://toy-marketplace-11861.web.app)
 
 ***In this project has a navbar,banner,gallery,categories,new arrival,accessories,blog and also has a footer section.Mainly my project name is KIDOTOYS where has a 3 sub-categories type dolls as like disney princess ,frozen dolls and also has a mickey mouse dolls.In navbar all other section we can not  access without login .so if you want to access this pages first you have to login .if you do not  register before  so first yoy have to register then you can login.
 
