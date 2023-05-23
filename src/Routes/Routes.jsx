@@ -11,6 +11,7 @@ import SingleToy from "../Pages/SingleToy/SingleToy";
 import MyToy from "../MyToy/MyToy";
 import Blog from "../Pages/Blog/Blog";
 import UpdateToyModal from "../Pages/UpdateToyModal/UpdateToyModal";
+import Error from "../Pages/ErrorPage/Error";
 
 
 
@@ -67,9 +68,13 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <SignUp></SignUp>,
-      }
+      },
     ]
   },
+  {
+    path:'*',
+    element:<Error></Error>
+  }
 ]);
 
 export default router;
